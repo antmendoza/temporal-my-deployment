@@ -1,0 +1,36 @@
+frontend.enableSchedules:
+  - value: true
+    constraints: {}
+worker.enableScheduler:
+  - value: true
+    constraints: {}
+system.advancedVisibilityWritingMode:
+  - value: "on"
+    constraints: {}
+#system.enableReadVisibilityFromES:
+#  - value: true
+#    constraints: {}
+#history.defaultWorkflowTaskTimeout:
+#  - value: 10s
+#  - value: 12s
+#    constraints:
+#      namespace: default
+#  - value: 13s
+#    constraints:
+#      namespace: my-namespace2
+#history.persistenceDynamicRateLimitingParams:
+#  - enabled: true
+#  - refreshInterval: 5s
+frontend.workerVersioningDataAPIs:
+  - value: true
+frontend.workerVersioningWorkflowAPIs:
+  - value: true
+frontend.buildIdScavengerEnabled:
+  - value: true
+frontend.enableUpdateWorkflowExecution:
+  - value: true
+frontend.enableUpdateWorkflowExecutionAsyncAccepted:
+  - value: true
+
+
+
