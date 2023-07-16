@@ -1,10 +1,15 @@
 # My temporal deployment
 
-This repository contains, step by step, how to deploy [temporal](https://temporal.io/) form scratch. 
+
+[WIP]
+
+This repository contains, step by step, how to deploy [temporal](https://temporal.io/). 
 
 ## Configuration
 
 ### Create postgres DB
+
+The following command assume there is a folder called `db-data` in the same directory the command is run
 
 ```
 docker run \
@@ -13,39 +18,34 @@ docker run \
     -e POSTGRES_USER=temporal \
     -e POSTGRES_PASSWORD=temporal \
     --rm \
-    -v ./db-data:/var/lib/postgresql/data <!--to persist data in db-data -->
+    -v ./db-data:/var/lib/postgresql/data \
     postgres:13 
 ```
 
-> https://github.com/temporalio/temporal/tree/master/tools/sql
+<!-- https://github.com/temporalio/temporal/tree/master/tools/sql -->
 
 
 
 #### DB configuration
 
-before...
-
-Download and unzip temporal server
+Download and unzip temporal server and tools
 
 https://github.com/temporalio/temporal/releases/tag/v1.21.2
 
-
 ```
-curl -o temporal_tmp https://github.com/temporalio/temporal/releases/download/v1.21.2/temporal_1.21.2_darwin_arm64.tar.gz
-unzip temporal_tmp -d temporal
-rm -f temporal_tmp
-
-
+mkdir -p temporalio && \
+cd temporalio && \
 curl https://github.com/temporalio/temporal/releases/download/v1.21.2/temporal_1.21.2_darwin_arm64.tar.gz -L -o temporal.tar.gz && \
 tar -xvf temporal.tar.gz && \
 rm -f temporal.tar.gz
+cd ..
 
 ```
 
-
-
-
 #### Create persistence store
+
+
+`cd temporalio`
 
 ```
 export SQL_HOST=localhost
@@ -57,6 +57,8 @@ export port=5432
 
 
 #### Create visibility store
+
+`cd temporalio`
 
 ```
 export SQL_HOST=localhost
@@ -98,6 +100,10 @@ binary directly, I am going to opt for the latest one.
 
 Now let's start temporal server. 
 
+<!--
+xattr -rd com.apple.quarantine temporal-* 
+-->
+
 `./temporal-server start`
 
 <!--
@@ -115,6 +121,16 @@ docker run \
 -->
 
 
+
+
+There is no namespaces created, you can create the first namespace using the
+following command
+
+`temporal operator namespace create default --description default`
+
+
+#### Deploy Temporal UI
+
 And the temporal UI. For the sake of simplicity we are using the docker image. 
 
 ```
@@ -129,9 +145,4 @@ docker run \
 ```
 Navigate to http://localhost:8081
 
-
-There is no namespaces created, you can create the first namespace using the 
-following command
-
-`temporal operator namespace create default --description default`
 
