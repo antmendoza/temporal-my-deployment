@@ -19,6 +19,32 @@ docker run \
 
 > https://github.com/temporalio/temporal/tree/master/tools/sql
 
+
+
+#### DB configuration
+
+before...
+
+Download and unzip temporal server
+
+https://github.com/temporalio/temporal/releases/tag/v1.21.2
+
+
+```
+curl -o temporal_tmp https://github.com/temporalio/temporal/releases/download/v1.21.2/temporal_1.21.2_darwin_arm64.tar.gz
+unzip temporal_tmp -d temporal
+rm -f temporal_tmp
+
+
+curl https://github.com/temporalio/temporal/releases/download/v1.21.2/temporal_1.21.2_darwin_arm64.tar.gz -L -o temporal.tar.gz && \
+tar -xvf temporal.tar.gz && \
+rm -f temporal.tar.gz
+
+```
+
+
+
+
 #### Create persistence store
 
 ```
@@ -63,8 +89,12 @@ export TEMPORAL_CONFIG_DIR=./config
 // export TEMPORAL_DYNAMIC_CONFIG_FILE_PATH=..config/development.yaml
 -->
 
+
+
 There are several ways to start temporal, you can use either a docker image or run the 
 binary directly, I am going to opt for the latest one. 
+
+
 
 Now let's start temporal server. 
 
