@@ -1,3 +1,5 @@
+# constant defined in temporal https://github.com/temporalio/temporal/blob/master/common/dynamicconfig/constants.go
+
 #frontend.enableClientVersionCheck:
 #- value: true
 #  constraints: {}
@@ -43,9 +45,7 @@ frontend.enableUpdateWorkflowExecution:
   - value: true
 frontend.enableUpdateWorkflowExecutionAsyncAccepted:
   - value: true
-#history.historyCountLimitWarn:
-    #- value: 100
-    #constraints: {}
+limit.historyCount.error:
 #history.historyCountLimitError:
-    #- value: 100
-    #constraints: {}
+  - value: 4
+    constraints: {}

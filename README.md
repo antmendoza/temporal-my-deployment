@@ -1,9 +1,6 @@
 # My temporal deployment
 
-This repository contains how to deploy temporal.io form scratch. 
-
-Temporal is an orchestration engine that will allow you to build reliable applications. 
-
+This repository contains, step by step, how to deploy [temporal](https://temporal.io/) form scratch. 
 
 ## Configuration
 
@@ -16,6 +13,7 @@ docker run \
     -e POSTGRES_USER=temporal \
     -e POSTGRES_PASSWORD=temporal \
     --rm \
+    -v ./db-data:/var/lib/postgresql/data <!--to persist data in db-data -->
     postgres:13 
 ```
 
@@ -65,6 +63,9 @@ export TEMPORAL_CONFIG_DIR=./config
 // export TEMPORAL_DYNAMIC_CONFIG_FILE_PATH=..config/development.yaml
 -->
 
+There are several ways to start temporal, you can use either a docker image or run the 
+binary directly, I am going to opt for the latest one. 
+
 Now let's start temporal server. 
 
 `./temporal-server start`
@@ -96,4 +97,11 @@ docker run \
     --rm \
     temporalio/ui:2.16.1
 ```
+Navigate to http://localhost:8081
+
+
+There is no namespaces created, you can create the first namespace using the 
+following command
+
+`temporal operator namespace create default --description default`
 
